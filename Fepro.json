@@ -406,7 +406,7 @@
         "alwaysLoaded": false,
         "file": "assets/Blue spaceship 3.png",
         "kind": "image",
-        "metadata": "",
+        "metadata": "{\"localFilePath\":\"assets/Blue spaceship 3.png\",\"extension\":\".png\"}",
         "name": "Blue spaceship 3.png",
         "smoothed": true,
         "userAdded": false,
@@ -2026,6 +2026,42 @@
         "kind": "image",
         "metadata": "",
         "name": "finish_line.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "space-shooter-assets/button_level_1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "space-shooter-assets\\button_level_1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "space-shooter-assets/button_level_2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "space-shooter-assets\\button_level_2.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "space-shooter-assets/button_locked.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "space-shooter-assets\\button_locked.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "space-shooter-assets/button_level_3.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "space-shooter-assets\\button_level_3.png",
         "smoothed": true,
         "userAdded": true
       }
@@ -3676,11 +3712,12 @@
       ],
       "animations": [
         {
-          "name": "",
+          "name": "Blue spaceship 3",
           "useMultipleDirections": false,
           "directions": [
             {
               "looping": true,
+              "metadata": "{\"pskl\":{}}",
               "timeBetweenFrames": 0.025,
               "sprites": [
                 {
@@ -10635,6 +10672,12 @@
       "name": "CurrentLevel",
       "type": "number",
       "value": 1
+    },
+    {
+      "folded": true,
+      "name": "LevelSelection",
+      "type": "number",
+      "value": 0
     }
   ],
   "layouts": [
@@ -10649,7 +10692,7 @@
       "title": "",
       "v": 0,
       "uiSettings": {
-        "grid": true,
+        "grid": false,
         "gridType": "rectangular",
         "gridWidth": 16,
         "gridHeight": 16,
@@ -10657,7 +10700,7 @@
         "gridOffsetY": 0,
         "gridColor": 10401023,
         "gridAlpha": 0.8,
-        "snap": true,
+        "snap": false,
         "zoomFactor": 0.2912258866911119,
         "windowMask": false
       },
@@ -10783,22 +10826,6 @@
           "x": 10,
           "y": 16,
           "zOrder": 13,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": true,
-          "depth": 1,
-          "height": 752,
-          "layer": "",
-          "name": "FinishLine",
-          "persistentUuid": "47e44eb3-7c8e-4cdb-a00d-4d503fc051a2",
-          "width": 64,
-          "x": 2016,
-          "y": -112,
-          "zOrder": 14,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -11666,6 +11693,16 @@
                     "+",
                     "1"
                   ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Main Menu\"",
+                    ""
+                  ]
                 }
               ]
             },
@@ -12350,6 +12387,7 @@
           "colorG": 176,
           "colorR": 74,
           "creationTime": 0,
+          "folded": true,
           "name": "Configurações Padrões",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -12446,6 +12484,18 @@
                   "parameters": [
                     "",
                     "\"FireBegin\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinExternalLayouts::CreateObjectsFromExternalLayout"
+                  },
+                  "parameters": [
+                    "",
+                    "\"Level\"+GlobalVariableString(CurrentLevel)",
+                    "",
+                    "",
+                    ""
                   ]
                 }
               ]
@@ -12564,6 +12614,755 @@
           "isLightingLayer": false,
           "isLocked": false,
           "name": "UI",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [],
+          "effects": [
+            {
+              "effectType": "Scene3D::HemisphereLight",
+              "name": "3D Light",
+              "doubleParameters": {
+                "elevation": 45,
+                "intensity": 1,
+                "rotation": 0
+              },
+              "stringParameters": {
+                "groundColor": "64;64;64",
+                "skyColor": "255;255;255",
+                "top": "Y-"
+              },
+              "booleanParameters": {}
+            }
+          ]
+        }
+      ],
+      "behaviorsSharedData": [
+        {
+          "name": "Animation",
+          "type": "AnimatableCapability::AnimatableBehavior"
+        },
+        {
+          "name": "Effect",
+          "type": "EffectCapability::EffectBehavior"
+        },
+        {
+          "name": "FireBullet",
+          "type": "FireBullet::FireBullet"
+        },
+        {
+          "name": "Flash",
+          "type": "Flash::Flash"
+        },
+        {
+          "name": "Flippable",
+          "type": "FlippableCapability::FlippableBehavior"
+        },
+        {
+          "name": "Health",
+          "type": "Health::Health"
+        },
+        {
+          "name": "Opacity",
+          "type": "OpacityCapability::OpacityBehavior"
+        },
+        {
+          "name": "Physics2",
+          "type": "Physics2::Physics2Behavior",
+          "gravityX": 0,
+          "gravityY": 9.8,
+          "scaleX": 100,
+          "scaleY": 100
+        },
+        {
+          "name": "Resizable",
+          "type": "ResizableCapability::ResizableBehavior"
+        },
+        {
+          "name": "Scale",
+          "type": "ScalableCapability::ScalableBehavior"
+        },
+        {
+          "name": "StayOnScreen",
+          "type": "StayOnScreen::StayOnScreen"
+        }
+      ]
+    },
+    {
+      "b": 209,
+      "disableInputWhenNotFocused": true,
+      "mangledName": "Main_32Menu",
+      "name": "Main Menu",
+      "r": 209,
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "v": 209,
+      "uiSettings": {
+        "grid": false,
+        "gridType": "rectangular",
+        "gridWidth": 32,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridColor": 10401023,
+        "gridAlpha": 0.8,
+        "snap": false,
+        "zoomFactor": 0.7777777777777778,
+        "windowMask": false
+      },
+      "objectsGroups": [
+        {
+          "name": "Levels",
+          "objects": [
+            {
+              "name": "Level1"
+            },
+            {
+              "name": "Level2"
+            },
+            {
+              "name": "Level3"
+            }
+          ]
+        }
+      ],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 0,
+          "height": 500,
+          "layer": "Background",
+          "name": "Background",
+          "persistentUuid": "2f994888-2f3e-44cd-8fae-ab05b8fe6718",
+          "width": 900,
+          "x": 1,
+          "y": 0,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Background",
+          "name": "Level1",
+          "persistentUuid": "6e579a9e-81e1-49c3-9cf0-1583260ab428",
+          "width": 0,
+          "x": 69,
+          "y": 232,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Background",
+          "name": "Level2",
+          "persistentUuid": "20400f4e-f9f1-478e-aeab-d30130fcaf24",
+          "width": 0,
+          "x": 363,
+          "y": 243,
+          "zOrder": 7,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Background",
+          "name": "Level3",
+          "persistentUuid": "c2a03253-27f3-4a32-a35a-3f8e775f1ce1",
+          "width": 0,
+          "x": 654,
+          "y": 243,
+          "zOrder": 8,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Background",
+          "name": "Gamename_",
+          "persistentUuid": "228ff834-5778-4695-99ce-a992f1b024de",
+          "width": 0,
+          "x": 33,
+          "y": 36,
+          "zOrder": 9,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "objects": [
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "Level1",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "Unlocked",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "space-shooter-assets\\button_level_1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 178,
+                            "y": 0
+                          },
+                          {
+                            "x": 178,
+                            "y": 181
+                          },
+                          {
+                            "x": 0,
+                            "y": 181
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "Level2",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "Locked",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "space-shooter-assets\\button_locked.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 1,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 181
+                          },
+                          {
+                            "x": 1,
+                            "y": 181
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Unlocked",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "space-shooter-assets\\button_level_2.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 1,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 181
+                          },
+                          {
+                            "x": 1,
+                            "y": 181
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "adaptCollisionMaskAutomatically": true,
+          "assetStoreId": "",
+          "name": "Level3",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "Locked",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "space-shooter-assets\\button_locked.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 1,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 181
+                          },
+                          {
+                            "x": 1,
+                            "y": 181
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Unlocked",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": true,
+                      "image": "space-shooter-assets\\button_level_3.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": [
+                        [
+                          {
+                            "x": 1,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 0
+                          },
+                          {
+                            "x": 179,
+                            "y": 181
+                          },
+                          {
+                            "x": 1,
+                            "y": 181
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "Gamename_",
+          "smoothed": true,
+          "tags": "",
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "Space Shooter",
+          "font": "Kenney Future Narrow.ttf",
+          "textAlignment": "left",
+          "characterSize": 100,
+          "color": {
+            "b": 255,
+            "g": 255,
+            "r": 255
+          }
+        }
+      ],
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "MouseButtonFromTextPressed"
+              },
+              "parameters": [
+                "",
+                "\"Left\""
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::Name"
+              },
+              "parameters": [
+                "Levels",
+                "Animation",
+                "=",
+                "\"Unlocked\""
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "Level1",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarGlobal"
+                  },
+                  "parameters": [
+                    "CurrentLevel",
+                    "=",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"PlayScene\"",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "Level2",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarGlobal"
+                  },
+                  "parameters": [
+                    "CurrentLevel",
+                    "=",
+                    "2"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"PlayScene\"",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "Level3",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ModVarGlobal"
+                  },
+                  "parameters": [
+                    "CurrentLevel",
+                    "=",
+                    "3"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Scene"
+                  },
+                  "parameters": [
+                    "",
+                    "\"PlayScene\"",
+                    ""
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "VarGlobal"
+              },
+              "parameters": [
+                "CurrentLevel",
+                ">=",
+                "2"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "Level2",
+                "Animation",
+                "=",
+                "\"Unlocked\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "VarGlobal"
+              },
+              "parameters": [
+                "CurrentLevel",
+                ">=",
+                "3"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "Level3",
+                "Animation",
+                "=",
+                "\"Unlocked\""
+              ]
+            }
+          ]
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 0.1,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": [
+            {
+              "effectType": "Scene3D::HemisphereLight",
+              "name": "3D Light",
+              "doubleParameters": {
+                "elevation": 45,
+                "intensity": 1,
+                "rotation": 0
+              },
+              "stringParameters": {
+                "groundColor": "64;64;64",
+                "skyColor": "255;255;255",
+                "top": "Y-"
+              },
+              "booleanParameters": {}
+            }
+          ]
+        },
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 0.1,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "Background",
           "renderingType": "",
           "visibility": true,
           "cameras": [],
@@ -25922,11 +26721,11 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "name": "Enemy3",
-          "persistentUuid": "62eb0502-b8e3-43c4-a369-09d4db203d41",
+          "name": "Meteor1",
+          "persistentUuid": "a0a24e1a-dbe7-45ec-b7e2-1ac0111ed34c",
           "width": 0,
-          "x": 1859,
-          "y": 144,
+          "x": 1339,
+          "y": 364,
           "zOrder": 1,
           "numberProperties": [],
           "stringProperties": [],
@@ -25937,57 +26736,12 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "name": "Enemy2",
-          "persistentUuid": "343edaa9-83ab-4e19-af9f-4dec0f5c966d",
-          "width": 0,
-          "x": 1405,
-          "y": 210,
-          "zOrder": 2,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Enemy1",
-          "persistentUuid": "fe9f24c1-e885-412c-a48d-db54aa80f522",
-          "width": 0,
-          "x": 770,
-          "y": 358,
-          "zOrder": 3,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
           "name": "Meteor1",
-          "persistentUuid": "deb053d9-9444-49c8-88a9-f3c98a4b0189",
+          "persistentUuid": "35dba56d-f89b-493b-91fe-61ffa870f607",
           "width": 0,
-          "x": 1029,
-          "y": 319,
-          "zOrder": 4,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Meteor1",
-          "persistentUuid": "223174a9-55ed-4606-b66d-22a73ffedd34",
-          "width": 0,
-          "x": 898,
-          "y": 35,
-          "zOrder": 4,
+          "x": 987,
+          "y": 194,
+          "zOrder": 1,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -25998,11 +26752,41 @@
           "height": 0,
           "layer": "",
           "name": "Meteor2",
-          "persistentUuid": "f484ca82-6ddd-4cfb-b540-b03c4c00b1e3",
+          "persistentUuid": "31c1265c-427c-4937-a0c5-15f0d98b4f03",
           "width": 0,
-          "x": 1229,
-          "y": 377,
-          "zOrder": 5,
+          "x": 1821,
+          "y": 219,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor4",
+          "persistentUuid": "61d5063e-0660-41d3-ac51-08da734fa4b9",
+          "width": 0,
+          "x": 2089,
+          "y": 432,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor4",
+          "persistentUuid": "5c8ad371-d80c-4aa8-8fcd-20fec141c329",
+          "width": 0,
+          "x": 2394,
+          "y": 147,
+          "zOrder": 4,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -26013,10 +26797,25 @@
           "height": 0,
           "layer": "",
           "name": "Meteor1",
-          "persistentUuid": "4e26adc6-595d-4754-9744-4d46234367e1",
+          "persistentUuid": "57adf403-1caa-4163-9e64-b6d52ed0b693",
           "width": 0,
-          "x": 1639,
-          "y": 378,
+          "x": 2431,
+          "y": 193,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor4",
+          "persistentUuid": "85115792-b376-4ee1-83ff-78bd05492384",
+          "width": 0,
+          "x": 2739,
+          "y": 449,
           "zOrder": 6,
           "numberProperties": [],
           "stringProperties": [],
@@ -26028,10 +26827,10 @@
           "height": 0,
           "layer": "",
           "name": "Meteor1",
-          "persistentUuid": "2c3b7e57-245c-4217-8a7b-ed618241a1cb",
+          "persistentUuid": "6691f724-4f6d-4a1f-b871-68a294327079",
           "width": 0,
-          "x": 1473,
-          "y": 52,
+          "x": 2628,
+          "y": 415,
           "zOrder": 7,
           "numberProperties": [],
           "stringProperties": [],
@@ -26043,10 +26842,10 @@
           "height": 0,
           "layer": "",
           "name": "Meteor2",
-          "persistentUuid": "18ca76c2-309b-4303-a6d5-e57660b4f6f7",
+          "persistentUuid": "7e0a6336-2d78-48b7-be84-afcae7d30518",
           "width": 0,
-          "x": 2370,
-          "y": 363,
+          "x": 3107,
+          "y": 321,
           "zOrder": 8,
           "numberProperties": [],
           "stringProperties": [],
@@ -26057,26 +26856,11 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "name": "Meteor1",
-          "persistentUuid": "b7ff227a-b5c2-4476-a4a5-e31050680960",
+          "name": "Enemy2",
+          "persistentUuid": "c1e2e802-fbe0-40eb-838b-b326c96d2bf0",
           "width": 0,
-          "x": 1036,
-          "y": 67,
-          "zOrder": 4,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "PowerupHealth",
-          "persistentUuid": "cde926d4-a49c-4aa0-9842-884806be716f",
-          "width": 0,
-          "x": 1998,
-          "y": 211,
+          "x": 2217,
+          "y": 105,
           "zOrder": 9,
           "numberProperties": [],
           "stringProperties": [],
@@ -26087,11 +26871,11 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "name": "PowerupShield",
-          "persistentUuid": "3038e038-c4ea-4e8f-b838-2696c284ab4d",
+          "name": "Enemy1",
+          "persistentUuid": "0dcc0645-7c3e-4f14-a33a-3a0452d01c1d",
           "width": 0,
-          "x": 757,
-          "y": 113,
+          "x": 1207,
+          "y": 397,
           "zOrder": 10,
           "numberProperties": [],
           "stringProperties": [],
@@ -26103,11 +26887,26 @@
           "height": 0,
           "layer": "",
           "name": "Enemy3",
-          "persistentUuid": "d7b33a3b-8a11-4ac4-a8f7-fee507153666",
+          "persistentUuid": "fe7ec603-d599-4810-93d7-e6219d10aad8",
           "width": 0,
-          "x": 2218,
-          "y": 390,
-          "zOrder": 1,
+          "x": 1686,
+          "y": 80,
+          "zOrder": 11,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy1",
+          "persistentUuid": "ec4e2665-fea8-417a-ad45-2087131c8327",
+          "width": 0,
+          "x": 2922,
+          "y": 339,
+          "zOrder": 12,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -26118,11 +26917,27 @@
           "height": 0,
           "layer": "",
           "name": "Enemy2",
-          "persistentUuid": "c3b68dd8-1656-401c-953e-174a070db0ac",
+          "persistentUuid": "13a620f2-97d1-43f5-b2b6-b0b917ba14a8",
           "width": 0,
-          "x": 3618,
-          "y": 211,
-          "zOrder": 2,
+          "x": 3576,
+          "y": 256,
+          "zOrder": 13,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 758,
+          "layer": "",
+          "name": "FinishLine",
+          "persistentUuid": "42b7a794-824e-4fb1-b17c-881ebdeb6a15",
+          "width": 64,
+          "x": 3719,
+          "y": -1,
+          "zOrder": 14,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -26132,72 +26947,12 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "name": "Meteor1",
-          "persistentUuid": "78c5b47a-0249-4953-8688-07916c66cb26",
+          "name": "PowerupHealth",
+          "persistentUuid": "9c63c235-9f3b-4e33-9418-deeba696d0fe",
           "width": 0,
-          "x": 1957,
-          "y": 322,
-          "zOrder": 4,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Meteor2",
-          "persistentUuid": "6d7c7021-7c25-40a3-8063-003bfec3d619",
-          "width": 0,
-          "x": 2153,
-          "y": 228,
-          "zOrder": 5,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Meteor1",
-          "persistentUuid": "58b4d111-2df0-4c6d-acac-1f9144665c9a",
-          "width": 0,
-          "x": 2684,
-          "y": 394,
-          "zOrder": 7,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Meteor2",
-          "persistentUuid": "ef26c478-1d38-459d-bb25-5b319fd03da9",
-          "width": 0,
-          "x": 2719,
-          "y": 65,
-          "zOrder": 8,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "name": "Enemy3",
-          "persistentUuid": "4a1de31c-cf5d-4232-aa27-4d6c11f9af1e",
-          "width": 0,
-          "x": 3104,
-          "y": 178,
-          "zOrder": 1,
+          "x": 2365,
+          "y": 395,
+          "zOrder": 15,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -26213,7 +26968,312 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.4281544813770606,
+        "zoomFactor": 0.278202318745163,
+        "windowMask": false
+      }
+    },
+    {
+      "associatedLayout": "PlayScene",
+      "name": "Level2",
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy3",
+          "persistentUuid": "217f51cf-885e-4e94-a824-f828639186f8",
+          "width": 0,
+          "x": 2207,
+          "y": 120,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy2",
+          "persistentUuid": "f62c1f97-0802-4887-a064-53efd7f0bbaf",
+          "width": 0,
+          "x": 1753,
+          "y": 186,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy1",
+          "persistentUuid": "08616f32-666a-490e-b9db-ea89589d1e97",
+          "width": 0,
+          "x": 1118,
+          "y": 334,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "6b9d5f7e-e102-4d89-a093-31b1cbaddaad",
+          "width": 0,
+          "x": 1377,
+          "y": 295,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "6be1d41d-7b49-4bae-a463-680638a04b83",
+          "width": 0,
+          "x": 1246,
+          "y": 11,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor2",
+          "persistentUuid": "6f9fa45a-f703-4035-beb2-f7c043a51ed9",
+          "width": 0,
+          "x": 1577,
+          "y": 353,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "e4d9e124-df7f-4d24-a4cb-e5a97aca5a1e",
+          "width": 0,
+          "x": 1987,
+          "y": 354,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "d0acde15-e28e-4d40-9620-279291d5347f",
+          "width": 0,
+          "x": 1821,
+          "y": 28,
+          "zOrder": 7,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor2",
+          "persistentUuid": "f072dd97-aa7d-4055-870b-0355346bda5d",
+          "width": 0,
+          "x": 2718,
+          "y": 339,
+          "zOrder": 8,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "e3ee4993-803e-4c41-b721-557ae503a202",
+          "width": 0,
+          "x": 1384,
+          "y": 43,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "PowerupShield",
+          "persistentUuid": "b661e501-9f6f-4d3d-9c7a-e95784271f8d",
+          "width": 0,
+          "x": 1105,
+          "y": 89,
+          "zOrder": 10,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy3",
+          "persistentUuid": "e7fcbff4-4177-4430-a1fe-582ceef2a9d0",
+          "width": 0,
+          "x": 2566,
+          "y": 366,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy2",
+          "persistentUuid": "00fe3d80-50e6-474f-8a11-fdba61b3e813",
+          "width": 0,
+          "x": 3966,
+          "y": 187,
+          "zOrder": 2,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "b4530f58-3a2e-47de-a606-a5b0140a77d6",
+          "width": 0,
+          "x": 2305,
+          "y": 298,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor2",
+          "persistentUuid": "0fdc5d78-97b6-46bd-acfe-22799c0a1968",
+          "width": 0,
+          "x": 2501,
+          "y": 204,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor1",
+          "persistentUuid": "d2723b2e-427d-4c16-9a6c-ae442a0c2d0b",
+          "width": 0,
+          "x": 3032,
+          "y": 370,
+          "zOrder": 7,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Meteor2",
+          "persistentUuid": "785fc49a-abd0-4a04-85cb-f3214021caa5",
+          "width": 0,
+          "x": 3067,
+          "y": 41,
+          "zOrder": 8,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "Enemy3",
+          "persistentUuid": "74b908be-cc59-4a96-8cc1-98c2f316fa0f",
+          "width": 0,
+          "x": 3452,
+          "y": 154,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 807,
+          "layer": "",
+          "name": "FinishLine",
+          "persistentUuid": "6229c6d7-b9ea-4e1d-be25-a84e0ae718c9",
+          "width": 64,
+          "x": 4234,
+          "y": -131,
+          "zOrder": 11,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "editionSettings": {
+        "grid": false,
+        "gridType": "rectangular",
+        "gridWidth": 32,
+        "gridHeight": 32,
+        "gridOffsetX": 0,
+        "gridOffsetY": 0,
+        "gridColor": 10401023,
+        "gridAlpha": 0.8,
+        "snap": false,
+        "zoomFactor": 0.14815033957683785,
         "windowMask": false
       }
     }
